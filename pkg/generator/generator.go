@@ -2,6 +2,7 @@ package generator
 
 import (
 	"math/rand"
+	"strings"
 	"time"
 )
 
@@ -195,6 +196,7 @@ var (
 			"cky",
 		},
 	}
+	badWords  = []string{"sex", "taboo", "fuck", "rape", "cock", "willy", "cum", "goock", "trann", "gook", "bitch", "shit", "pusie", "kike", "nigg", "puss"}
 	source    rand.Source
 	generator *rand.Rand
 )
@@ -217,6 +219,20 @@ func contains(arr []string, str string) bool {
 	return false
 }
 
+func filterBadWords(input string) string {
+	downcaseString := strings.ToLower(input)
+	for _, badWord := range badWords {
+		if strings.Contains(downcaseString, badWord) {
+			if generator.Float64() > 0.5 {
+				return "Wumbus"
+			}
+			return "Bobo"
+		}
+	}
+	return input
+}
+
+// GenerateName returns a randomly generated farm animal name
 func GenerateName() string {
 	num := intBetween(3, 6)
 	source := strArray4[generator.Intn(len(strArray4))]
@@ -297,5 +313,5 @@ func GenerateName() string {
 			source += "-" + source
 		}
 	}
-	return source
+	return filterBadWords(source)
 }
