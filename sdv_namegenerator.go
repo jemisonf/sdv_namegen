@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/jemisonf/sdv_namegen/pkg/generator"
+	"github.com/jemisonf/sdv_namegenerator/pkg/generator"
 )
 
 func main() {

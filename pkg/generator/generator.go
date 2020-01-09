@@ -261,7 +261,7 @@ func GenerateName() string {
 	} else {
 		source += strArray6[generator.Intn(len(strArray6))]
 	}
-	for i := len(source); i > 2; i++ {
+	for i := len(source) - 1; i > 2; i-- {
 		strArray8 := strArray6
 		ch = source[i]
 		str2 := string(ch)
