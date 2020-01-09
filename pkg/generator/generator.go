@@ -208,7 +208,16 @@ func intBetween(lower, upper int) int {
 	return generator.Intn(upper-lower) + lower
 }
 
-func generateName() string {
+func contains(arr []string, str string) bool {
+	for _, el := range arr {
+		if el == str {
+			return true
+		}
+	}
+	return false
+}
+
+func GenerateName() string {
 	num := intBetween(3, 6)
 	source := strArray4[generator.Intn(len(strArray4))]
 	for i := 1; i < num; i++ {
@@ -221,9 +230,72 @@ func generateName() string {
 			break
 		}
 	}
-	var ch rune
-	if generator.Float64() < 0.5 /* && strArray6 does not contain last letter of source */ {
+	var ch byte
+	if generator.Float64() < 0.5 &&
+		!contains(strArray6, string(source[len(source)-1])) {
 		source += strArray7[generator.Intn(len(strArray7))]
+	} else if contains(strArray6, string(source[len(source)-1])) {
+		if generator.Float64() < 0.8 {
+			if len(source) <= 3 {
+				str2 := source
+				strArray8 := dictionary2[string(source[len(source)-1])]
+				dictionary3 := dictionary2
+				ch = source[len(source)-1]
+				index1 := string(ch)
+				maxValue := len(dictionary3[index1]) - 1
+				index2 := generator.Intn(maxValue)
+				str3 := strArray8[index2]
+				source = str2 + str3
+			} else {
+				str2 := source
+				strArray8 := dictionary1[string(source[len(source)-1])]
+				dictionary3 := dictionary1
+				ch = source[len(source)-1]
+				index1 := string(ch)
+				maxValue := len(dictionary3[index1]) - 1
+				index2 := generator.Intn(maxValue)
+				str3 := strArray8[index2]
+				source = str2 + str3
+			}
+		}
+	} else {
+		source += strArray6[generator.Intn(len(strArray6))]
 	}
-	return "Wumbus"
+	for i := len(source); i > 2; i++ {
+		strArray8 := strArray6
+		ch = source[i]
+		str2 := string(ch)
+		if contains(strArray8, str2) {
+			strArray9 := strArray6
+			ch = source[i-2]
+			str3 := string(ch)
+			if contains(strArray9, str3) {
+				ch = source[i-1]
+				switch ch {
+				case 'c':
+					source = source[0:i] + "k" + source[i:]
+					i--
+					continue
+				case 'l':
+					source = source[0:i-1] + "n" + source[i:]
+					i--
+					continue
+				case 'r':
+					source = source[0:i-1] + "k" + source[i:]
+					i--
+					continue
+				default:
+					continue
+				}
+			}
+		}
+	}
+	if len(source) <= 3 && generator.Float64() < 0.1 {
+		if generator.Float64() < 0.5 {
+			source += source
+		} else {
+			source += "-" + source
+		}
+	}
+	return source
 }
