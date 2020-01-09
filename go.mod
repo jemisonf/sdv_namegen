@@ -1,3 +1,3 @@
-module github.com/jemisonf/sdv_namegenerator
+module github.com/jemisonf/sdv_namegen
 
 go 1.13
