@@ -1,6 +1,7 @@
 package random
 
 import (
+	"fmt"
 	"math/rand"
 	"time"
 )
@@ -50,23 +51,25 @@ type MockRandom struct {
 // Intn returns the lesser of `upper - 1` and the latest number from
 // `intSeq`
 func (m *MockRandom) Intn(upper int) int {
-	if m.intSeq[m.intIndex] >= upper {
-		m.intIndex++
+	num := m.intSeq[m.intIndex]
+	fmt.Println(num)
+	m.intIndex++
+	if num >= upper {
 		return upper - 1
 	}
-	m.intIndex++
-	return m.intSeq[m.intIndex]
+	return num
 }
 
 // IntBtwn returns the lesser of `upper - 1` and `lower + n` where
 // `n` is the latest number from `intSeq`
 func (m *MockRandom) IntBtwn(lower, upper int) int {
-	if m.intSeq[m.intIndex]+lower >= upper {
-		m.intIndex++
+	num := m.intSeq[m.intIndex] + lower
+	fmt.Println(num)
+	m.intIndex++
+	if num >= upper {
 		return upper - 1
 	}
-	m.intIndex++
-	return m.intSeq[m.intIndex] + lower
+	return num
 }
 
 // Float64 returns the latest number from `floatSeq`
