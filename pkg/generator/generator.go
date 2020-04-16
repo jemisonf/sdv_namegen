@@ -3,7 +3,8 @@ package generator
 import (
 	"math/rand"
 	"strings"
-	"time"
+
+	"github.com/jemisonf/sdv_namegen/pkg/random"
 )
 
 var (
@@ -202,8 +203,9 @@ var (
 )
 
 func init() {
-	source = rand.NewSource(time.Now().UnixNano())
-	generator = rand.New(source)
+
+	// source = rand.NewSource(time.Now().UnixNano())
+	// generator = rand.New(source)
 }
 
 func intBetween(lower, upper int) int {
@@ -233,8 +235,8 @@ func filterBadWords(input string) string {
 }
 
 // GenerateName returns a randomly generated farm animal name
-func GenerateName() string {
-	num := intBetween(3, 6)
+func GenerateName(generator random.Generator) string {
+	num := generator.IntBtwn(3, 6)
 	source := strArray4[generator.Intn(len(strArray4)-1)]
 	for i := 1; i < num; i++ {
 		if i%2 != 0 {

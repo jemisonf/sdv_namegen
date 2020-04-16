@@ -4,8 +4,10 @@ import (
 	"fmt"
 
 	"github.com/jemisonf/sdv_namegen/pkg/generator"
+	"github.com/jemisonf/sdv_namegen/pkg/random"
 )
 
 func main() {
-	fmt.Println(generator.GenerateName())
+	random := random.NewRandom()
+	fmt.Println(generator.GenerateName(random))
 }
