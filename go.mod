@@ -1,3 +1,3 @@
 module github.com/jemisonf/sdv_namegen
 
-go 1.13
+go 1.14

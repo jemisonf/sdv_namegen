@@ -235,7 +235,7 @@ func filterBadWords(input string) string {
 // GenerateName returns a randomly generated farm animal name
 func GenerateName() string {
 	num := intBetween(3, 6)
-	source := strArray4[generator.Intn(len(strArray4))]
+	source := strArray4[generator.Intn(len(strArray4)-1)]
 	for i := 1; i < num; i++ {
 		if i%2 != 0 {
 			source = source + strArray6[generator.Intn(len(strArray6))]
