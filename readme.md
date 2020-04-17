@@ -1,4 +1,4 @@
-# Stardew Valley Name Generator
+# Stardew Valley Name Generator [![Coverage Status](https://coveralls.io/repos/github/jemisonf/sdv_namegen/badge.svg?branch=master)](https://coveralls.io/github/jemisonf/sdv_namegen?branch=master)
 
 This is a pretty direct port of Stardew Valley's random farm animal name generator, based on ~~c# code extracted from the game files~~ sheer intuition. Work is ongoing to clean up the generator code and ensure algorithm correctness.
 
