@@ -238,7 +238,7 @@ func filterBadWords(input string) string {
 func GenerateName(generator random.Generator) string {
 	num := generator.IntBtwn(3, 6)
 	source := strArray4[generator.Intn(len(strArray4)-1)]
-	for i := 1; i < num; i++ {
+	for i := 1; i < num-1; i++ {
 		if i%2 != 0 {
 			source = source + strArray6[generator.Intn(len(strArray6))]
 		} else {
