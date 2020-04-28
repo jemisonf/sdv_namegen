@@ -54,4 +54,10 @@ func TestShortSource(t *testing.T) {
 	if result != "Banny" {
 		t.Errorf("Got %s instead of \"Banny\"", result)
 	}
+	floatSeq = []float64{0.0, 0.0, 0.0, 0.0, 0.0}
+	mockGenerator = random.NewMock(intSeq, floatSeq)
+	result = GenerateName(mockGenerator)
+	if result != "Banny" {
+		t.Errorf("Got %s instead of \"Banny\"", result)
+	}
 }
